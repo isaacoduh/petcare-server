@@ -18,7 +18,10 @@ class ProductController extends Controller
     public function byCategory(Category $category)
     {
         $categories = Category::getAllChildrenByParent($category);
-        $query = Product::query()->select('products.*')->join('product_categories AS pc', 'pc.product_id', 'products.id')->whereIn('pc.category_id', array(fn($c) => $c->id, $categories));
+        $query = Product::query()
+                ->select('products.*')
+                ->join('product_categories AS pc', 'pc.product_id', 'products.id')
+                ->whereIn('pc.category_id', array_map(fn($c) => $c->id, $categories));
         return $this->renderProducts($query);
     }
 
