@@ -20,7 +20,7 @@ class DashboardController extends Controller
 
     public function activeCustomers()
     {
-        return Customer::where('active', CustomerStatus::Active->value)->count();
+        return Customer::where('status', CustomerStatus::Active->value)->count();
     }
 
     public function activeProducts()

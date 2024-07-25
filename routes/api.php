@@ -31,7 +31,7 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get('orders/{order}', [OrderController::class, 'view']);
 
 
-    Route::get('/dashboard/customers-count', [DashboardController::class, 'activeCustomer']);
+    Route::get('/dashboard/customers-count', [DashboardController::class, 'activeCustomers']);
     Route::get('/dashboard/products-count', [DashboardController::class, 'activeProducts']);
     Route::get('/dashboard/orders-count', [DashboardController::class, 'paidOrders']);
     Route::get('/dashboard/income-amount', [DashboardController::class, 'totalIncome']);
