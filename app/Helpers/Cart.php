@@ -24,7 +24,7 @@ class Cart
         $request = \request();
         $user = $request->user();
         if($user) {
-            return CartItem::where('user_id', $user->id)->map(
+            return CartItem::where('user_id', $user->id)->get()->map(
                 fn($item) => ['product_id' => $item->product_id, 'quantity' => $item->quantity]
             );
         } else {

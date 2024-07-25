@@ -48,5 +48,8 @@ class User extends Authenticatable
         ];
     }
 
-    // customer
+    public function customer()
+    {
+        return $this->hasOne(Customer::class);
+    }
 }

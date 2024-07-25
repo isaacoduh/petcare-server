@@ -14,7 +14,7 @@
         <ul>
             <li>
                 <a 
-                    {{-- href="{{route('cart.index')}}" --}}
+                    href="{{route('cart.index')}}"
                     class="relative flex items-center justify-between py-2 px-3 transition-colors hover:bg-slate-800"
                 >
                     <div class="flex items-center">
