@@ -57,7 +57,7 @@ $categoryList = \App\Models\Category::getActiveAsTree();
                     'image' => $product->image ?: '/img/noimage.png',
                     'title' => $product->title,
                     'price' => $product->price,
-                    // 'addToCartUrl' => 
+                    'addToCartUrl' => route('cart.add', $product)
                 ])}})"
                 class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
             >

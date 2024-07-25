@@ -41,7 +41,7 @@ class CartController extends Controller
             $productFound = false;
             foreach($cartItems as &$item){
                 if($item['product_id'] === $product->id){
-                    $totalQuantity = $item['$quantity'] + $quantity;
+                    $totalQuantity = $item['quantity'] + $quantity;
                     $productFound = true;
                     break;
                 }
