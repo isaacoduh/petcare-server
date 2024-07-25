@@ -6,7 +6,7 @@ use App\Enums\AddressType;
 use App\Enums\CustomerStatus;
 use App\Enums\OrderStatus;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\OrderResource;
+use App\Http\Resources\Dashboard\OrderResource;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
@@ -60,12 +60,14 @@ class DashboardController extends Controller
         $query = Order::query()
             ->select(['c.name', DB::raw('count(orders.id) as count')])
             ->join('users', 'created_by', '=', 'users.id')
-            ->join('customer_address AS a', 'users.id', '=', 'a.customer_id')
-            ->join('status', OrderStatus::Paid->value)
+            ->join('customer_addresses AS a', 'users.id', '=', 'a.customer_id')
+            ->join('countries AS c', 'a.country_code', '=', 'c.code')
+            ->where('status', OrderStatus::Paid->value)
             ->where('a.type', AddressType::Billing->value)
-            ->groupBy('c.name');
-        
-        if($fromDate) {
+            ->groupBy('c.name')
+            ;
+
+        if ($fromDate) {
             $query->where('orders.created_at', '>', $fromDate);
         }
 
