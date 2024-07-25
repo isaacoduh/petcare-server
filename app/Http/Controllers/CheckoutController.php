@@ -61,7 +61,7 @@ class CheckoutController extends Controller
                         'name' => $product->title,
                         'images' => $product->image ? [$product->image] : []
                     ],
-                    'unit_amout' => $product->price * 100,
+                    'unit_amount' => $product->price * 100,
                 ],
                 'quantity' => $quantity
             ];
@@ -96,7 +96,7 @@ class CheckoutController extends Controller
             $order = Order::create($orderData);
 
             foreach($orderItems as $orderItem) {
-                $orderItems['order_id'] = $order->id;
+                $orderItem['order_id'] = $order->id;
                 OrderItem::create($orderItem);
             }
 
